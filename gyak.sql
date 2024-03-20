@@ -1,0 +1,15 @@
+SELECT IIF(GROUPING_ID(v.USERNEV) = 1,'Végösszeg',v.USERNEV),
+    count(distinct szh.SZALLAS_ID)
+FROM Vendeg v LEFT JOIN Foglalas f ON f.UGYFEL_FK = v.USERNEV
+    JOIN Szoba szo ON szo.SZOBA_ID = f.SZOBA_FK
+    JOIN Szallashely szh ON szo.SZALLAS_FK = szh.SZALLAS_ID
+GROUP BY ROLLUP (v.USERNEV)
+
+SELECT DISTINCT v.USERNEV, v.NEV
+FROM Vendeg v JOIN Foglalas f ON f.UGYFEL_FK = v.USERNEV
+WHERE v.USERNEV NOT IN
+(
+    SELECT f2.UGYFEL_FK
+    FROM Foglalas f2
+    WHERE 
+)
