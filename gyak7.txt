@@ -1,0 +1,34 @@
+create OR ALTER view VSZOBA
+AS
+select sz.*,
+	szh.SZALLAS_NEV,
+    szh.HELY,
+    szh.CSILLAGOK_SZAMA
+from Szoba sz join Szallashely szh on sz.SZALLAS_FK = szh.SZALLAS_ID
+
+SELECT * FROM VSZOBA
+
+CREATE OR ALTER PROC SPUgyfelFoglalasok
+@ugyfel nvarchar(100)
+AS
+BEGIN
+	SELECT *
+    from Foglalas
+    WHERE ugyfel_fk = @ugyfel
+END
+
+EXEC SPUgyfelFoglalasok 'laszlo2'
+
+CREATE or alter function UDFFerohelyek
+(
+	@fazon int
+)
+RETURNS int
+AS
+BEGIN
+	DECLARE @ferohely int
+    SELECT @ferohely = sz.FEROHELY
+    FROM Foglalas f join Szoba sz on f.SZOBA_FK = sz.SZOBA_ID
+    where f.FOGLALAS_PK = @fazon
+    RETURN @ferohely
+END
