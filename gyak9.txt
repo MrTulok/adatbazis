@@ -1,0 +1,16 @@
+match(p:Person)-[:ACTED_IN]->(m:Movie)
+where exists ((p)-[:DIRECTED]-(m))
+return p.name
+
+match (p:Person)- [:DIRECTED]->(m:Movie)
+with p.name as nev, count(*) as db
+where db>1
+return nev, db
+
+match (p:Person) - [:PRODUCED]->(m:Movie)
+where p.name = 'Joel Silver'
+return m.title
+
+db.receptek.aggregate([{$group: {_id: "$type",osszeg: {$sum: "$cook_time"}}}])
+
+db.receptek.find({title: {$regex: /Tacos/}})
