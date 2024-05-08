@@ -6,7 +6,7 @@
 
 2. feladat
 
-db.users.find({email:{$regex:/.com/}},{ name:1,email:1})
+db.users.find({email:{$regex:/.com/}},{_id:0, name:1,email:1})
 
 3.feladat
 
