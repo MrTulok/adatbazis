@@ -1,7 +1,7 @@
 CREATE TABLE [Helyezések](
   	[Helyezés] [int] NOT NULL,
     [Csapat_id] [int] PRIMARY key,
-    [Pont] [int] NULL,
+    [Pont] [int] CHECK (Pont >= 0),
     [Győzelem] [int] NULL,
     [Döntetlen] [int] NULL,
     [Vereség] [int] NULL,

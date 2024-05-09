@@ -5,8 +5,8 @@ CREATE TABLE [Játékosok](
   	[Középső_név] [nvarchar](255) NULL,
   	[Vezetéknév] [nvarchar](255) NOT NULL,
   	[Poszt] [nvarchar](255) NOT NULL,
-  	[Kor] [int] NULL,
-  	[Érték_millió_$] [int] NULL,
+  	[Kor] [int] CHECK (Kor >= 15 AND Kor <= 100),
+  	[Érték_millió_$] [int] CHECK (Érték_millió >= 0),
   	[Nemzetiség_id] [int] NOT NULL,
   	FOREIGN KEY (Csapat_id) REFERENCES Csapatok(Csapat_id),
   	FOREIGN key (Nemzetiség_id) REFERENCES Nemzetiségek(Nemzetiség_id)

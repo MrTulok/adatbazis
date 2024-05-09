@@ -3,10 +3,8 @@ CREATE TABLE [Csapatok](
   	[Tulajdonos] [nvarchar](255) NULL,
     [Tulajdonlás_kezdete] [int] NULL,
   	[Nemzetiség_id] [int] NOT NULL,
-    [Érték (Millió $)] [int] NULL,
+    [Érték (Millió $)] [int] CHECK (Érték_Millió >= 0),
   	FOREIGN key (Nemzetiség_id) REFERENCES Nemzetiségek(Nemzetiség_id),
-  	FOREIGN key (csapat_id) REFERENCES Meccsek(hazai_csapat),
-  	FOREIGN key (Nemzetiség_id) REFERENCES Meccsek(vendég_csapat),
   	foreign key (csapat_id) REFERENCES Csapatnév(csapat_id)
 ) ON [PRIMARY]
 
