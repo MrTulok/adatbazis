@@ -1,7 +1,7 @@
 CREATE TABLE [Meccsek](
     [Meccs_id] [int] IDENTITY(1,1) primary key,
-  	[Stadion_id] [int] NOT NULL,
     [Dátum] [date] NULL,
+    [Stadion_id] [int] NOT NULL,
     [Hazai_csapat] [int] NOT NULL,
     [Vendég_csapat] [int] NOT NULL,
     [Hazai_pont] [int] NULL,
