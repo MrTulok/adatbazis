@@ -9,13 +9,18 @@ GROUP by s.Stadionnév
 
 SELECT csn.Csapatnév,
 	(isnull(j.Keresztnév,'') + ' ' + isnull(j.Középső_név,'') + ' ' + isnull(j.Vezetéknév,'')) AS 'Név',
-    j.Poszt
+    j.Poszt,
+    case
+    	when j.Kor < 20 then 'Fiatal'
+        when j.Kor >30 then 'Idős'
+        else 'Középkorú'
+    end as 'Kor kategória'
 FROM Játékosok j
     JOIN Csapatok cs ON cs.Csapat_id = j.Csapat_id
     JOIN Csapatnév csn ON cs.Csapat_id = csn.Csapat_id
     join Nemzetiségek n on j.Nemzetiség_id = n.Nemzetiség_id
 where n.Nemzetiség = 'Spanyol'
-GROUP BY j.Keresztnév, j.Középső_név, j.Vezetéknév, csn.Csapatnév, j.Poszt
+GROUP BY j.Keresztnév, j.Középső_név, j.Vezetéknév, csn.Csapatnév, j.Poszt, j.Kor
 order by csn.Csapatnév, j.Poszt
 
 SELECT DENSE_RANK() OVER (ORDER BY j.Érték_millió_$ DESC, j.Keresztnév ASC) AS 'érték rangsor',
