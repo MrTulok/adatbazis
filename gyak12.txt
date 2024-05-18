@@ -1,0 +1,32 @@
+hset dolgozo:1 nev "Kiss Ilona" munkakor titkarno kod 1
+hset dolgozo:2 nev "Nagy Eva" munkakor konyvelo kod 2
+
+hset projekt:1 projektnev "EURO_33"
+hset projekt:2 projektnev "TRANS_22"
+
+hset munka:1 dolgozokod 1
+hset munka:3 dolgozokod 2
+
+zadd dolgozo:nev 1 "Kiss Ilona" 2 "Nagy Eva"
+
+select title from movies_and_tv where release_year = 2018 limit 5 allow filtering;
+
+select type, release_year, count(*) from movies_and_tv group by type, release_year;
+
+
+create table szemely ( nev text, szulev int, foglalkozas text, primary key((nev,szulev),foglalkozas) );
+
+insert into szemely (nev, szulev,foglalkozas) values('Kiss Béla',1980,'Ács');
+insert into szemely (nev, szulev,foglalkozas) values('Tóth Ottó',1991,'Lakatos');
+
+alter table szemely add vegzettseg list<text>;
+
+update szemely set vegzettseg = ['Gépész','Műszerész'] where nev = 'Kiss Béla' and szulev = 1980 and foglalkozas = 'Ács';
+
+alter table szemely add nyelvtudas set<text>;
+
+update szemely set nyelvtudas = {'angol','francia'} where nev = 'Tóth Ottó' and szulev = 1991 and foglalkozas = 'Lakatos';
+
+alter table szemely add autok map<text,text>;
+
+update szemely set autok['Skoda'] = 'abc-123', autok['Audi'] = 'def-456' where nev = 'Kiss Béla' and szulev = 1980 and foglalkozas = 'Ács';
