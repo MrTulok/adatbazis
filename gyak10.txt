@@ -1,0 +1,53 @@
+> set ev 2024
+"OK"
+
+> set honap 5
+"OK"
+
+> set nap 8
+"OK"
+
+> expire ev 30
+(integer) 1
+
+> expire honap 30
+(integer) 1
+
+> expire nap 30
+(integer) 1
+
+> hszet auto rendszam abc123 tipus trabant evjarat 1970
+"ERR unknown command 'hszet'"
+
+> hset auto rendszam abc123 tipus trabant evjarat 1970
+(integer) 3
+
+> rpush tantargy adatbazisok matematika
+(integer) 2
+
+> lrange tantargy 0 -1
+1) "adatbazisok"
+2) "matematika"
+
+> sadd napok hetfo kedd szerda csutortok
+(integer) 4
+
+> sadd munkanapok hetfo szerda
+(integer) 2
+
+> sunion napok munkanapok
+1) "hetfo"
+2) "kedd"
+3) "szerda"
+4) "csutortok"
+
+> zadd zh 25 Juci 12 Laci 85 Maci
+(integer) 3
+
+> zrange zh 0 -1 withscores
+1) "Laci"
+2) "12"
+3) "Juci"
+4) "25"
+5) "Maci"
+6) "85

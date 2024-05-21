@@ -30,3 +30,6 @@ update szemely set nyelvtudas = {'angol','francia'} where nev = 'Tóth Ottó' an
 alter table szemely add autok map<text,text>;
 
 update szemely set autok['Skoda'] = 'abc-123', autok['Audi'] = 'def-456' where nev = 'Kiss Béla' and szulev = 1980 and foglalkozas = 'Ács';
+
+create table dolgozok ( azon int, nev text, vegzettseg list<text>, primary key (azon) );
+insert into dolgozok (azon, nev, vegzettseg) values (1,'Kiss Béla',['Asztalos','Kőműves']);
